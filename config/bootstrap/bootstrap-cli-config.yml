@@ -55,25 +55,34 @@ bootstrap:
     # Mapping between IDP (Azure Active Directory) groups and CDF groups.
     idp-cdf-mappings:
     # Support multiple CDF Projects, like dev/test/prod in one config. 
-        - cdf-project: [CDF project name - test]
+        - cdf-project: bootcamp-19-test
           mappings:
               - cdf-group: cdf:all:owner
-                idp-source-id: [Azure AD group id]
-                idp-source-name: [Azure AD group name]
+                idp-source-id: 974f70f0-00ad-4c73-9917-0ff06fdfa7ad
+                idp-source-name: bootcamp-19-test-all-owner
               - cdf-group: cdf:all:read
-                idp-source-id: [Azure AD group id]
-                idp-source-name: [Azure AD group name]
+                idp-source-id: 508b788c-d39d-4757-a67c-0a817ebaa900
+                idp-source-name: bootcamp-19-test-all-read
 
 
     namespaces:
-        # Typical config will have separate namespace by data source ("src") and use cases ("uc")
-        - ns-name: [Namespace name]
-          description: [Description]
+      # Typical config will have separate namespace by data source ("src") and use cases ("uc")
+      - ns-name: src
+        description: Sources used for data extraction
+        # Description names will normally follow src:001:srcname or uc:001:usecasename naming convention
+        ns-nodes:
+          - node-name: src:001:sap
+            description: Source 01 data from SAP
+          - node-name: src:002:opcua
+            description: Source 02 data from opcua
+      # Typical config will have separate namespace by data source ("src") and use cases ("uc")
+      - ns-name: uc
+        description: Use cases representing the data/products
 
-          # Node names will normally follow src:001:srcname or uc:001:usecasename naming convention
-          ns-nodes:
-              - node-name: [Node name]
-                description: [Node description]
+        # Description names will normally follow src:001:srcname or uc:001:usecasename naming convention
+        ns-nodes:
+          - node-name: uc:001:oee
+            description: Use case 001 Over all Equipment effectiveness
 
 
 # de-facto standards for CDF CogniteClient and logger configuration.
